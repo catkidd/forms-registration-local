@@ -76,7 +76,7 @@ const LoginPage = () => {
                             sx={{ mt: 3, mb: 2 }}
                             endIcon={<LoginIcon />}
                             fullWidth>
-                            Log In
+                            Sign In
                         </Button>
                         <Grid container>
                             <Grid item xs>
