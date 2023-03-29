@@ -15,7 +15,6 @@ import LockIcon from "@mui/icons-material/Lock";
 import React from "react";
 import { Copyright } from "./Copyright";
 
-
 const RegisterPage = () => {
     return (
         <>
@@ -35,6 +34,34 @@ const RegisterPage = () => {
                     </Typography>
 
                     <Box component="form" sx={{ mt: 1 }}>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "flex-start",
+                                columnGap: "1rem",
+                            }}>
+                            <TextField
+                                fullWidth
+                                margin="normal"
+                                id="firstname"
+                                name="firstname"
+                                type="firstname"
+                                label="Firstname"
+                                required
+                                helperText="Please enter your firstname"
+                            />
+                            <TextField
+                                fullWidth
+                                margin="normal"
+                                id="lastname"
+                                name="lastname"
+                                type="lastname"
+                                label="Lastname"
+                                required
+                                helperText="Please enter your lastname"
+                            />
+                        </Box>
                         <TextField
                             margin="normal"
                             id="email"
@@ -55,9 +82,15 @@ const RegisterPage = () => {
                             fullWidth
                             helperText="Please enter your password"
                         />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
+                        <TextField
+                            margin="normal"
+                            type="password"
+                            label="Confirm Password"
+                            id="cpassword"
+                            name="cpassword"
+                            required
+                            fullWidth
+                            helperText="Re-enter your password"
                         />
                         <Button
                             type="submit"
@@ -65,17 +98,12 @@ const RegisterPage = () => {
                             sx={{ mt: 3, mb: 2 }}
                             endIcon={<LoginIcon />}
                             fullWidth>
-                            Sign In
+                            Sign Up
                         </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
+                        <Grid container justifyContent="flex-end">
                             <Grid item>
                                 <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
+                                    {"Already have an account? Sign In"}
                                 </Link>
                             </Grid>
                         </Grid>
@@ -87,4 +115,4 @@ const RegisterPage = () => {
     );
 };
 
-export default RegisterPage
+export default RegisterPage;
