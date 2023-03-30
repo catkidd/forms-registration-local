@@ -3,6 +3,8 @@ import { Copyright } from "../components/Copyright";
 import { Avatar, Box, Button, Container, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router";
+import DeleteIcon from '@mui/icons-material/Delete';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export const Homepage = () => {
     const navigate = useNavigate();
@@ -14,6 +16,14 @@ export const Homepage = () => {
         localStorage.removeItem("islogged");
         navigate("/login");
     };
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+
+        localStorage.clear()
+        window.location.reload()
+        navigate("/login");
+    }
     return (
         <>
             <Container component="main" maxWidth="sm">
@@ -33,13 +43,27 @@ export const Homepage = () => {
                     <Typography variant="body1" sx={{ m: 2 }}>
                         Welcome - {userName.firstname + " " + userName.lastname}
                     </Typography>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        sx={{ m: 2 }}
-                        onClick={handleLogout}>
-                        Logout
-                    </Button>
+                    <Box sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                    }}>
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            sx={{ m: 2 }}
+                            endIcon={<LogoutIcon />}
+                            onClick={handleLogout}>
+                            Logout
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="error"
+                            sx={{ m: 2 }}
+                            startIcon={<DeleteIcon />}
+                            onClick={handleDelete}>
+                            Delete
+                        </Button>
+                    </Box>
                 </Box>
                 <Copyright sx={{ mt: 8, mb: 4 }} />
             </Container>
