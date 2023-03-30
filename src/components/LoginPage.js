@@ -14,6 +14,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import React, { useState } from "react";
 import { Copyright } from "./Copyright";
 import { Link, useNavigate } from "react-router-dom";
+import { toastifyService } from "../services/toastifyService";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -26,11 +27,11 @@ const LoginPage = () => {
         e.preventDefault();
 
         const loggedUser = JSON.parse(localStorage.getItem("user"));
-        if (input.email === loggedUser.email && input.password === loggedUser.password) {
+        if (loggedUser && input.email === loggedUser.email && input.password === loggedUser.password) {
             localStorage.setItem("islogged", true);
             navigate("/");
         } else {
-            alert("Wrong email or Password");
+            toastifyService.error('Wrong Credentials.')
         }
     };
 

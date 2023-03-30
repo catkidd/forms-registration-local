@@ -4,7 +4,9 @@ import ForgetPass from "./components/ForgetPass";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
 import { Homepage } from "./pages/homepage";
-import ProtectedRoutes from "./services/ProtectedRoutes";
+import ProtectedRoutes from "./services/protectedRoutes";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
     return (
@@ -17,6 +19,7 @@ function App() {
                 <Route path="/forget-password" element={<ForgetPass />} />
                 <Route path="/register" element={<RegisterPage />} />
             </Routes>
+            <ToastContainer />
         </>
     );
 }
