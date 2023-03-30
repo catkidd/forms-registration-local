@@ -41,7 +41,7 @@ export const Homepage = () => {
                         Welcome to Mahango Deal
                     </Typography>
                     <Typography variant="body1" sx={{ m: 2 }}>
-                        Welcome - {userName[0].firstname + " " + userName[0].lastname}
+                        Welcome - {userName.firstname + " " + userName.lastname}
                     </Typography>
                     <Box sx={{
                         display: "flex",

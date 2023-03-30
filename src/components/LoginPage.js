@@ -29,8 +29,8 @@ const LoginPage = () => {
         const loggedUser = JSON.parse(localStorage.getItem("user"));
         if (
             loggedUser &&
-            input.email === loggedUser[0].email &&
-            input.password === loggedUser[0].password
+            input.email === loggedUser.email &&
+            input.password === loggedUser.password
         ) {
             localStorage.setItem("islogged", true);
             navigate("/");

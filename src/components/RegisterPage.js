@@ -15,12 +15,10 @@ const RegisterPage = () => {
         confirmPassword: "",
     });
 
-    const [data, setData] = useState([]);
-
     const handleSubmitRegister = (e) => {
         e.preventDefault();
 
-        localStorage.setItem("user", JSON.stringify([...data, input]));
+        localStorage.setItem("user", JSON.stringify([ input]));
         navigate("/login");
     };
 
