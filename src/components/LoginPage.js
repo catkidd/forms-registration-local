@@ -6,28 +6,34 @@ import {
     Container,
     FormControlLabel,
     Grid,
-    Link,
     TextField,
     Typography,
 } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
 import LockIcon from "@mui/icons-material/Lock";
-import React from "react";
-
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {"Copyright © "}
-            <Link color="inherit" href="#">
-                Mahango Deal
-            </Link>{" "}
-            {new Date().getFullYear()}
-            {"."}
-        </Typography>
-    );
-}
+import React, { useState } from "react";
+import { Copyright } from "./Copyright";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+    const navigate = useNavigate();
+    const [input, setInput] = useState({
+        email: "",
+        password: "",
+    });
+
+    const handleSubmitLogin = (e) => {
+        e.preventDefault();
+
+        const loggedUser = JSON.parse(localStorage.getItem("user"));
+        if (input.email === loggedUser.email && input.password === loggedUser.password) {
+            localStorage.setItem("islogged", true);
+            navigate("/");
+        } else {
+            alert("Wrong email or Password");
+        }
+    };
+
     return (
         <>
             <Container component="main" maxWidth="sm">
@@ -45,11 +51,15 @@ const LoginPage = () => {
                         Sign In
                     </Typography>
 
-                    <Box component="form" sx={{ mt: 1 }}>
+                    <Box component="form" sx={{ mt: 1 }} onSubmit={handleSubmitLogin}>
                         <TextField
                             margin="normal"
                             id="email"
                             name="email"
+                            value={input.email}
+                            onChange={(e) =>
+                                setInput({ ...input, [e.target.name]: e.target.value })
+                            }
                             type="email"
                             label="Email Address"
                             required
@@ -62,6 +72,10 @@ const LoginPage = () => {
                             label="Password"
                             id="password"
                             name="password"
+                            value={input.password}
+                            onChange={(e) =>
+                                setInput({ ...input, [e.target.name]: e.target.value })
+                            }
                             required
                             fullWidth
                             helperText="Please enter your password"
@@ -80,13 +94,13 @@ const LoginPage = () => {
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                <Link href="#" variant="body2">
+                                <Link className="__link" to="/forget-password">
                                     Forgot password?
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
+                                <Link className="__link" to="/register">
+                                    <span>Don't have an account? Sign Up</span>
                                 </Link>
                             </Grid>
                         </Grid>
