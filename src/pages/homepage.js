@@ -25,7 +25,7 @@ export const Homepage = () => {
                         alignItems: "center",
                     }}>
                     <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-                        <AccountCircleIcon />
+                        <AccountCircleIcon sx={{ fontSize: 40 }} />
                     </Avatar>
                     <Typography component="h1" variant="h5" sx={{ m: 2 }}>
                         Welcome to Mahango Deal
