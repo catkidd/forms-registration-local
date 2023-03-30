@@ -27,11 +27,15 @@ const LoginPage = () => {
         e.preventDefault();
 
         const loggedUser = JSON.parse(localStorage.getItem("user"));
-        if (loggedUser && input.email === loggedUser.email && input.password === loggedUser.password) {
+        if (
+            loggedUser &&
+            input.email === loggedUser[0].email &&
+            input.password === loggedUser[0].password
+        ) {
             localStorage.setItem("islogged", true);
             navigate("/");
         } else {
-            toastifyService.error('Wrong Credentials.')
+            toastifyService.error("Wrong email or password.");
         }
     };
 
