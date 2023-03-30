@@ -1,21 +1,27 @@
-import {
-    Avatar,
-    Box,
-    Button,
-    Checkbox,
-    Container,
-    FormControlLabel,
-    Grid,
-    Link,
-    TextField,
-    Typography,
-} from "@mui/material";
+import { Avatar, Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
 import LockIcon from "@mui/icons-material/Lock";
-import React from "react";
+import React, { useState } from "react";
 import { Copyright } from "./Copyright";
+import { Link, useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
+    const navigate = useNavigate();
+    const [input, setInput] = useState({
+        firstname: "",
+        lastname: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    });
+
+    const handleSubmitRegister = (e) => {
+        e.preventDefault();
+
+        localStorage.setItem("user", JSON.stringify(input));
+        navigate("/login");
+    };
+
     return (
         <>
             <Container component="main" maxWidth="sm">
@@ -30,10 +36,10 @@ const RegisterPage = () => {
                         <LockIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign In
+                        Create an account
                     </Typography>
 
-                    <Box component="form" sx={{ mt: 1 }}>
+                    <Box component="form" sx={{ mt: 1 }} onSubmit={handleSubmitRegister}>
                         <Box
                             sx={{
                                 display: "flex",
@@ -46,6 +52,10 @@ const RegisterPage = () => {
                                 margin="normal"
                                 id="firstname"
                                 name="firstname"
+                                value={input.firstname}
+                                onChange={(e) =>
+                                    setInput({ ...input, [e.target.name]: e.target.value })
+                                }
                                 type="firstname"
                                 label="Firstname"
                                 required
@@ -56,6 +66,10 @@ const RegisterPage = () => {
                                 margin="normal"
                                 id="lastname"
                                 name="lastname"
+                                value={input.lastname}
+                                onChange={(e) =>
+                                    setInput({ ...input, [e.target.name]: e.target.value })
+                                }
                                 type="lastname"
                                 label="Lastname"
                                 required
@@ -66,6 +80,10 @@ const RegisterPage = () => {
                             margin="normal"
                             id="email"
                             name="email"
+                            value={input.email}
+                            onChange={(e) =>
+                                setInput({ ...input, [e.target.name]: e.target.value })
+                            }
                             type="email"
                             label="Email Address"
                             required
@@ -78,6 +96,10 @@ const RegisterPage = () => {
                             label="Password"
                             id="password"
                             name="password"
+                            value={input.password}
+                            onChange={(e) =>
+                                setInput({ ...input, [e.target.name]: e.target.value })
+                            }
                             required
                             fullWidth
                             helperText="Please enter your password"
@@ -86,8 +108,12 @@ const RegisterPage = () => {
                             margin="normal"
                             type="password"
                             label="Confirm Password"
-                            id="cpassword"
-                            name="cpassword"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            value={input.confirmPassword}
+                            onChange={(e) =>
+                                setInput({ ...input, [e.target.name]: e.target.value })
+                            }
                             required
                             fullWidth
                             helperText="Re-enter your password"
@@ -102,8 +128,8 @@ const RegisterPage = () => {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Already have an account? Sign In"}
+                                <Link className="__link" to="/login">
+                                    <span>Already have an account? Sign In</span>
                                 </Link>
                             </Grid>
                         </Grid>
